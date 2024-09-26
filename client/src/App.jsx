@@ -1,5 +1,8 @@
 import "./App.css";
 import { useState } from "react";
+import Results from "./components/Results";
+import { Route, Routes } from "react-router-dom";
+import Home from "./components/Home";
 
 export default function App() {
   const [name, setName] = useState("");
@@ -7,14 +10,14 @@ export default function App() {
 
   function handleNameChange(event) {
     event.preventDefault();
-    console.log("name changed");
-    setMessage(...name, event.target.value);
+    console.log(event.target.value);
+    setName(event.target.value);
   }
 
   function handleMessageChange(event) {
     event.preventDefault();
-    console.log("message changed");
-    setMessage(...message, event.target.value);
+    console.log(event.target.value);
+    setMessage(event.target.value);
   }
 
   return (
@@ -36,12 +39,15 @@ export default function App() {
         ></input>
         <button type="submit">Submit</button>
       </form>
+      <Routes>
+        <Route path="/" element={<Home />} />
+      </Routes>
     </>
   );
 
   function handleSubmit(event) {
     event.preventDefault();
-    console.log("event happening");
+    console.log({ name: name, message: message });
     fetch("http://localhost:8080/message", {
       method: "POST",
       headers: {

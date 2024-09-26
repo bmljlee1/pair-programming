@@ -17,6 +17,7 @@ async function makeTable() {
   await db.query(
     `INSERT INTO guestbook (name, message) VALUES ('Obi-Wan', 'Hello There')`
   );
+  console.log("successfully seeded");
 }
 
 makeTable();

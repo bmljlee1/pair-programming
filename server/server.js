@@ -22,11 +22,11 @@ app.get("/", async (request, response) => {
 
 app.post("/message", async (request, response) => {
   const { name, message } = request.body;
-  db.query(`INSERT INTO guestbook(name, message) VALUES($1, $2)`, [
+  const data = db.query(`INSERT INTO guestbook(name, message) VALUES($1, $2)`, [
     name,
     message,
   ]);
-  response.json(" ");
+  response.json(data);
 });
 
 app.get("/message", async (request, response) => {
